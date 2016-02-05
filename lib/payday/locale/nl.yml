@@ -16,7 +16,9 @@ nl:
       total: "Totaal:"
       notes: "Opmerkingen"
     line_item:
-      description: Omschrijving
+      po: Po
+      address: Address
+      service: Service
       unit_price: Eenheidsprijs
       quantity: Hoeveelheid
       amount: Bedrag

@@ -17,7 +17,9 @@ de:
       total: "Gesamt:"
       notes: "Anmerkungen"
     line_item:
-      description: Beschreibung
+      po: Po
+      address: Address
+      service: Service
       unit_price: Stückpreis
       quantity: Menge
       amount: Betrag

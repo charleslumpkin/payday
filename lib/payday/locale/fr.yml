@@ -15,7 +15,9 @@ fr:
       total: "Total:"
       notes: "Notes"
     line_item:
-      description: Description
+      po: Po
+      address: Address
+      service: Service
       unit_price: Prix unitaire
       quantity: Quantité
       amount: Montant

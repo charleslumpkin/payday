@@ -16,7 +16,9 @@ es:
       total: "Total:"
       notes: "Notas"
     line_item: 
-      description: Descripción
+      po: Po
+      address: Address
+      service: Service
       unit_price: Precio por Unidad
       quantity: Cantidad
       amount: Cantidad

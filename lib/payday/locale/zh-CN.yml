@@ -15,7 +15,9 @@ zh-CN:
       total: "总计:"
       notes: "备注"
     line_item:
-      description: 描述
+      po: Po
+      address: Address
+      service: Service
       unit_price: 单价
       quantity: 数量
       amount: 合计

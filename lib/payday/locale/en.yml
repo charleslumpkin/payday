@@ -15,9 +15,9 @@ en:
       tax: "Tax:"
       total: "Total:"
     line_item:
-      po: PO
-      service: Service
+      po: Po
       address: Address
+      service: Service
       unit_price: Unit Price
       quantity: Quantity
       amount: Amount
