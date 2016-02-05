@@ -12,9 +12,9 @@ module Payday
       expect(li.quantity).to eq(BigDecimal.new("30"))
     end
 
-    it "should be able to be initlialized with a description" do
-      li = LineItem.new(description: "12 Pairs of Pants")
-      expect(li.description).to eq("12 Pairs of Pants")
+    it "should be able to be initlialized with a service" do
+      li = LineItem.new(service: "One Time Maintenance")
+      expect(li.description).to eq("One Tim Maintenance")
     end
 
     it "should return the correct amount" do

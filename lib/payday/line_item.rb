@@ -15,7 +15,9 @@ module Payday
       self.display_quantity = options[:display_quantity]
       self.display_price = options[:display_price]
       self.price = options[:price] || "0.00"
-      self.description = options[:description] || ""
+      self.address = options[:address] || ""
+      self.service = options[:service] || ""
+      self.po = options[:po] || ""
     end
 
     # Sets the quantity of this {LineItem}

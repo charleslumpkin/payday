@@ -7,7 +7,7 @@ module Payday
       i = Invoice.new(invoice_number: 20, bill_to: "Here", ship_to: "There",
           notes: "These are some notes.",
           line_items:
-            [LineItem.new(price: 10, quantity: 3, description: "Shirts")],
+            [LineItem.new(price: 10, quantity: 3, service: "One Time Maintenance")],
           shipping_rate: 15.00, shipping_description: "USPS Priority Mail:",
           tax_rate: 0.125, tax_description: "Local Sales Tax, 12.5%",
           invoice_date: Date.civil(1993, 4, 12))
@@ -16,7 +16,7 @@ module Payday
       expect(i.bill_to).to eq("Here")
       expect(i.ship_to).to eq("There")
       expect(i.notes).to eq("These are some notes.")
-      expect(i.line_items[0].description).to eq("Shirts")
+      expect(i.line_items[0].service).to eq("One Time Maintenance")
       expect(i.shipping_rate).to eq(BigDecimal.new("15.00"))
       expect(i.shipping_description).to eq("USPS Priority Mail:")
       expect(i.tax_rate).to eq(BigDecimal.new("0.125"))
@@ -28,21 +28,21 @@ module Payday
       i = Invoice.new
 
       # $100 in Pants
-      i.line_items << LineItem.new(price: 20, quantity: 5, description: "Pants")
+      i.line_items << LineItem.new(price: 20, quantity: 5, service: "One Time Maintenance")
 
       # $30 in Shirts
       i.line_items <<
-        LineItem.new(price: 10, quantity: 3, description: "Shirts")
+        LineItem.new(price: 10, quantity: 3, service: "One Time Maintenance")
 
       # $1000 in Hats
-      i.line_items << LineItem.new(price: 5, quantity: 200, description: "Hats")
+      i.line_items << LineItem.new(price: 5, quantity: 200, service: "One Time Maintenance")
 
       expect(i.subtotal).to eq(BigDecimal.new("1130"))
     end
 
     it "should calculate the correct tax rounded to two decimal places" do
       i = Invoice.new(tax_rate: 0.1)
-      i.line_items << LineItem.new(price: 20, quantity: 5, description: "Pants")
+      i.line_items << LineItem.new(price: 20, quantity: 5, service: "One Time Maintenance")
 
       expect(i.tax).to eq(BigDecimal.new("10"))
     end
@@ -50,7 +50,7 @@ module Payday
     it "shouldn't apply taxes to invoices with subtotal <= 0" do
       i = Invoice.new(tax_rate: 0.1)
       i.line_items << LineItem.new(price: -1, quantity: 100,
-        description: "Negative Priced Pants")
+        service: "One Time Maintenace")
 
       expect(i.tax).to eq(BigDecimal.new("0"))
     end
@@ -59,14 +59,14 @@ module Payday
       i = Invoice.new(tax_rate: 0.1)
 
       # $100 in Pants
-      i.line_items << LineItem.new(price: 20, quantity: 5, description: "Pants")
+      i.line_items << LineItem.new(price: 20, quantity: 5, service: "One Time Maintenance")
 
       # $30 in Shirts
       i.line_items <<
-        LineItem.new(price: 10, quantity: 3, description: "Shirts")
+        LineItem.new(price: 10, quantity: 3, service: "One Time Maintenance")
 
       # $1000 in Hats
-      i.line_items << LineItem.new(price: 5, quantity: 200, description: "Hats")
+      i.line_items << LineItem.new(price: 5, quantity: 200, dservice: "One Time Maintenance")
 
       expect(i.total).to eq(BigDecimal.new("1243"))
     end
@@ -167,9 +167,9 @@ module Payday
           EOF
 
           invoice.line_items += [
-            LineItem.new(price: 20, quantity: 5, description: "Pants"),
-            LineItem.new(price: 10, quantity: 3, description: "Shirts"),
-            LineItem.new(price: 5, quantity: 200, description: "Hats")
+            LineItem.new(price: 20, quantity: 5, service: "One Time Maintenance"),
+            LineItem.new(price: 10, quantity: 3, service: "One Time Maintenance"),
+            LineItem.new(price: 5, quantity: 200, service: "One Time Maintenance")
           ] * 30
 
           expect(invoice.render_pdf).to match_binary_asset "testing.pdf"
@@ -186,9 +186,9 @@ module Payday
 
         it "should render an invoice correctly" do
           invoice.line_items += [
-            LineItem.new(price: 20, quantity: 5, description: "Pants"),
-            LineItem.new(price: 10, quantity: 3, description: "Shirts"),
-            LineItem.new(price: 5, quantity: 200.0, description: "Hats")
+            LineItem.new(price: 20, quantity: 5, service: "One Time Maintenance"),
+            LineItem.new(price: 10, quantity: 3, service: "One Time Maintenance"),
+            LineItem.new(price: 5, quantity: 200.0, service: "One Time Maintenance")
           ] * 3
 
           expect(invoice.render_pdf).to match_binary_asset "svg.pdf"

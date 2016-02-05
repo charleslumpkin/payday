@@ -22,9 +22,9 @@ It's pretty easy to use Payday with the built in objects. We include the Invoice
 Example:
 
     invoice = Payday::Invoice.new(:invoice_number => 12)
-    invoice.line_items << Payday::LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
-    invoice.line_items << Payday::LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
-    invoice.line_items << Payday::LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
+    invoice.line_items << Payday::LineItem.new(:price => 20, :quantity => 5, :service => "One Time Maintenance")
+    invoice.line_items << Payday::LineItem.new(:price => 10, :quantity => 3, :service => "One Time Maintenance")
+    invoice.line_items << Payday::LineItem.new(:price => 5, :quantity => 200, :service => "One Time Maintenance")
     invoice.render_pdf_to_file("/path/to_file.pdf")
 
 Documentation
@@ -91,7 +91,7 @@ Payday uses the i18n gem to provide support for custom labels and internationali
           tax: "Tax:"
           total: "Total:"
         line_item:
-          description: Description
+          service: Service
           unit_price: Unit Price
           quantity: Quantity
           amount: Amount
